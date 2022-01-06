@@ -1,7 +1,5 @@
 
-// const { thoughts } = require('../models');
-// const thoughts = require('../models/thoughts');
-// need to look at - from activites so not sure which is right?
+const { thoughts, users } = require('../models');
 
 module.exports = {
   // Get all thoughts

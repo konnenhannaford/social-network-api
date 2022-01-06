@@ -1,11 +1,9 @@
-// const { users } = require('../models');
-// const users = require('../models/users');
-// need to look at - from activites so not sure which is right?
+const { thoughts, users } = require('../models');
 
 module.exports = {
   // Get all users
   getusers(req, res) {
-    user.find()
+    users.find()
       .then(async (users) => {
         const userObj = {
           users,
@@ -27,8 +25,7 @@ module.exports = {
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
           : res.json({
-              user),
-            })
+              user })
       )
       .catch((err) => {
         console.log(err);
@@ -41,25 +38,22 @@ module.exports = {
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
   },
-  // Delete a user and remove them from the course
-  deleteuser(req, res) {
-    user.findOneAndRemove({ _id: req.params.userId })
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: 'No such user exists' })
-            )
-      )
-      .then((course) =>
-        !course
-          ? res.status(404).json({
-              message: 'user deleted, d',
-            })
-          : res.json({ message: 'user successfully deleted' })
-      )
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  },
-
-};
+// //   // Delete a user - cant figure issue
+//   deleteuser(req, res) {
+//     user.findOneAndRemove({ _id: req.params.userId })
+//       .then((user) =>
+//         !user
+//           ? res.status(404).json({ message: 'No such user exists' })
+//       .then((course) =>
+//         !course
+//           ? res.status(404).json({
+//               message: 'user deleted, d',
+//             })
+//           : res.json({ message: 'user successfully deleted' })
+//       )
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(500).json(err);
+//       }):
+//     },
+}
