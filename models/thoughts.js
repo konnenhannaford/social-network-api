@@ -38,20 +38,14 @@ const reactionSchema = new Schema(
       default: Date.now(),
       //   * Use a getter method to format the timestamp on query
     }
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+    id: false,
   }
 );
-                              //     },
-                              //   },
-                              //   {
-                              //     toJSON: {
-                              //       getters: true,
-                              //     },
-                              //     id: false,
-                              //   }
-                              // );
-
-                              // module.exports = reactionSchema;
-
 
 const thoughtSchema = new Schema(
   {
@@ -72,22 +66,17 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-
-    thoughts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'thoughts',
-      },
-    ],
+    reactions: [ReactionsSchema]
   },
   {
     toJSON: {
       virtuals: true,
+      getters:true
     },
     id: false,
   }
 );
 
-const Thoughts = model('course', thoughtSchema);
+const Thoughts = model('thought', thoughtSchema);
 
-module.exports = Course;
+module.exports = Thoughts;

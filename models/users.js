@@ -18,30 +18,34 @@ const usersSchema = new Schema(
     thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Thought',
+        ref: 'Thought'
       },
     ],
-
-    friends: [      {
+    friends: [      
+      {
         type: Schema.Types.ObjectId,
-        ref: 'User',  
-      },
-    ],
+        ref: 'Users'
+      }
+    ]
   },
-),
-  // {
-    // toJSON: {
-    //   getters: true,
-    //   id: false,
-    // }
-  
+
+  {
+    toJSON: {
+      virtuals: true,
+      getters:true,
+    },
+    id: false
+}
+);
 
 // virtual prop goes here - - 
 
-// usersSchema.virtual("friendCount").get(function () {
-//   return this.friends.length;
-// });
-const Users = model('users', usersSchema);
+usersSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
+});
+module.exports = mongoose.model("user", userSchema);
 
 
-module.exports = Users;
+const User = model('Users', UsersSchema);
+
+module.exports = User; 
