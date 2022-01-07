@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const assignmentSchema = require('./Assignment');
+// const assignmentSchema = require('./Assignment');
 
 // **User**:
 
@@ -41,7 +41,7 @@ const usersSchema = new Schema(
     // },
     // friends: {
     // },
-    required: [assignmentSchema],
+    required: [usersSchema],
   },
   {
     toJSON: {

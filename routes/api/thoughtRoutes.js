@@ -12,6 +12,9 @@ const {
 //Get thoughts
 router.route('/').get(getThoughts)
 
+//post a thought
+router.route('/').post(createThoughts)
+
 //Get a thought
 router.route('/:thoughtId').get(getaThought);
 
