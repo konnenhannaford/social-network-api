@@ -1,18 +1,9 @@
-// **Thought**:
-
-// * `thoughtText`
-//   * String
-//   * Required
-//   * Must be between 1 and 280 characters
 
 // * `createdAt`
 //   * Date
 //   * Set default value to the current timestamp
 //   * Use a getter method to format the timestamp on query
 
-// * `username` (The user that created this thought)
-//   * String
-//   * Required
 
 // * `reactions` (These are like replies)
 //   * Array of nested documents created with the `reactionSchema`
@@ -23,12 +14,46 @@
 
 // ---
 
+const { Schema, model, Types } = require('mongoose');
 
 
+const reactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      maxlength: 280,
+      minlength: 1,
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+      //   * Use a getter method to format the timestamp on query
+    }
+  }
+);
+                              //     },
+                              //   },
+                              //   {
+                              //     toJSON: {
+                              //       getters: true,
+                              //     },
+                              //     id: false,
+                              //   }
+                              // );
 
-const { Schema, model, } = require('mongoose');
+                              // module.exports = reactionSchema;
 
-const courseSchema = new Schema(
+
+const thoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
@@ -38,6 +63,7 @@ const courseSchema = new Schema(
     },
     createdAt: {
       type: Date,
+      default: Date.now(),
       // default: true,
         // default: () => new Date(+new Date() + 84 * 24 * 60 * 60 * 1000),
       // Use a getter method to format the timestamp on query
@@ -62,6 +88,6 @@ const courseSchema = new Schema(
   }
 );
 
-const Course = model('course', courseSchema);
+const Thoughts = model('course', thoughtSchema);
 
 module.exports = Course;
