@@ -30,7 +30,7 @@ On inital load, use npm install to install the required dependencies.  Use node 
 
 ## Usage
 
-Walkthrough video link: https://watch.screencastify.com/v/BKItKpOcXESryMfuri5v
+Walkthrough video link: https://watch.screencastify.com/v/9PdB2Unjo8uldkJKceG1
 
 
 Follow the instructions above to install and run the app.  Then follow through the requests in Insomnia.  At a later stage, a front end aspect could be added to this project.  
