@@ -20,7 +20,7 @@ router.route('/:userId').put(updateUser);
 router.route('/:userId').delete(deleteUser);
 
 // all user
-router.route('/:userId').get(getAllUsers);
+router.route('/').get(getAllUsers);
 
 // single user
 router.route('/:userId').get(getaUser);

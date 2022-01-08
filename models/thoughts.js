@@ -14,7 +14,10 @@
 
 // ---
 
-const { Schema, model, Types } = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// const { Schema, model, Types } = require('mongoose');
 
 
 const reactionSchema = new Schema(
@@ -77,6 +80,8 @@ const thoughtSchema = new Schema(
   }
 );
 
-const Thoughts = model('thought', thoughtSchema);
+// const Thoughts = model('thought', thoughtSchema);
 
-module.exports = Thoughts;
+// module.exports = Thoughts;
+
+module.exports = Thoughts = mongoose.model('thoughts', thoughtSchema);
