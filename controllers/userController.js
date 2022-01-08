@@ -71,31 +71,36 @@ module.exports = {
       });
   },
 
-  addFriend(req, rew) {
-
+  addFriend(req, res) {
+    Users.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: { friends: req.params.friendId } },
+      { new: true }
+    )
+      .then((user) =>
+      !user
+        ? res
+      .status(400)
+      .json({ message: `No user Found`})
+        : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
   },
 
   deleteFriend(req, res) {
-
+    Users.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendId } },
+      { new: true }
+    )
+      .then((user) => 
+        !user
+      ? res.status(400).json({ message: `No user Found`})
+      : res.json(user)
+      )
+      .then(() => res.json({ message: `Friend deleted`}))
+      .catch((err) => res.status(500).json(err));
   },
   
-// //   // Delete a user - cant figure issue
-  // deleteUser(req, res) {
-  //   Users.findOneAndRemove({ _id: req.params.userId })
-  //     .then((user) =>
-  //       !user
-  //         ? res.status(404).json({ message: 'No such user exists' })
-  //     .then((course) =>
-  //       !course
-  //         ? res.status(404).json({
-  //             message: 'user deleted, d',
-  //           })
-  //         : res.json({ message: 'user successfully deleted' })
-  //     )
-  //     .catch((err) => {
-  //       console.log(err);
-  //       res.status(500).json(err);
-  //     }):
-      
-  //   },
-}
+  
+};
