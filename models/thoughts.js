@@ -66,7 +66,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: [ReactionsSchema]
+    reactions: [reactionSchema]
   },
   {
     toJSON: {
