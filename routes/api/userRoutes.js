@@ -9,9 +9,11 @@ const {
   getaUser,
 } = require('../../controllers/userController');
 
+// all user
+router.route('/').get(getAllUsers);
 
 // create
-router.route('/:userId').post(createUser);
+router.route('/').post(createUser);
 
 // update
 router.route('/:userId').put(updateUser);
@@ -19,8 +21,6 @@ router.route('/:userId').put(updateUser);
 // delete
 router.route('/:userId').delete(deleteUser);
 
-// all user
-router.route('/').get(getAllUsers);
 
 // single user
 router.route('/:userId').get(getaUser);

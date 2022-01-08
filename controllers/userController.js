@@ -10,13 +10,33 @@ module.exports = {
 
   // update a user
   updateUser(req, res) {
-    console.log(req.body);
+    Users.findOneAndUpdate({ _id: req.params.userId}, { $set: req.body})
+    .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No such user exists' })
+          : res.json({ message: 'user successfully updated' })
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    })
   },
+
 
   // delete a user
 
+ 
   deleteUser(req, res) {
-    
+    Users.findOneAndRemove({ _id: req.params.userId })
+    .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No such user exists' })
+          : res.json({ message: 'user successfully deleted' })
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    })
   },
 
   // Get all users

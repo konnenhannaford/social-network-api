@@ -53,10 +53,36 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+
+  // addd reaction
   addaReaction(req, res) {
+    Thought.findOneAndUpdate(
+        {_id: req.params.thoughtId},
+        {$push: { reactions: req.body } },
+        { new: true }
+    )
+    .then((thought) =>
+        !thought
+            ? res.status(404).json({ message: 'No thought found'})
+            : res.json(thought)
+    )
+    .catch((err) => res.status(500).json(err));
 
   },
-  deleteaReaction(req, res) {
 
+  deleteaReaction(req, res) {
+      Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $pull: { reactions: { reactionId: req.params.reactionId } } },
+          { new: true }
+      )
+          .then((thought) =>
+          !thought 
+              ? res
+                  .status(404)
+                  .json({ message: 'No thought found'})
+              : res.json(thought)
+          )
+          .catch((err) => res.status(500).json(err));
   }
 };
